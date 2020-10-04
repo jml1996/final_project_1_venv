@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+
+        <!-- http://getbootstrap.com/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <!-- App's own CSS -->
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <!-- http://jquery.com/ -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+        <!-- http://getbootstrap.com/ -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- https://github.com/corejavascript/typeahead.js/blob/master/doc/jquery_typeahead.md -->
+        <script src="https://cdn.rawgit.com/corejavascript/typeahead.js/master/dist/typeahead.jquery.js"></script>
+
+        <!-- http://handlebarsjs.com/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+        <!-- app's own JavaScript -->
+        <script src="/static/scripts.js"></script>
+
+        <title>Mashup</title>
+
+    </head>
+    <body>
+
+        <!-- Fill viewport -->
+        <div class="col">
+            <form action="/emphasize" enctype="multipart/form-data" method="post">
+                first file (python text)<br>
+                <input name="file1", type="file"><br><br>
+                second file (verse)*<br>
+                <input name="file2", type="file"><br><br>
+                <button type="submit">emphasize</button></button><br><br>
+                *Should be a text file containing clean HTML, as outputted by <a href=https://www.textfixer.com/html/convert-word-to-html.php>this</a> word-to-html converter.<br>
+                Stressed syllables should be indicated with "&ltb&gt&lt/b&gt" tags, not "&ltstrong&gt&lt/strong&gt."
+            </form>
+            <p>&nbsp;</p>
+            <div id="list"><p><iframe src="alls_well_test.html" width=200 height=400 frameborder=0 ></iframe></p></div>
+        </div>
+
+    </body>
+</html>
