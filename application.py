@@ -21,29 +21,11 @@ def splitfile(file):
     chunks = [file[i:i+n] for i in range(0, len(file), n)]
     return chunks
 
-# inputlist: ascii as binary in list form
-# databasebinary: binary representation of verse
-# databaseverse: verse (html, isomorphic to databasebinary)
-# outputlist: not isomorphic to anything; the structure is meaningless, except that instances of
-#  nested lists should be limited to multisyllabic words.
 def randomslicematch(inputlist, databasebinary, databaseverse, outputlist, recursiondepth):
-    # oginputlist = inputlist
-    # ogdatabasebinary = databasebinary
-    # ogdatabaseverse = databaseverse
-    # ogoutputlist = outputlist
-    # ogrecursiondepth = recursiondepth
-    # # resetting the "recursiondepth" argument like this makes it only a pseudo-indicator of actual number of recursions (hence the number (20) far below 1000)
-    # if recursiondepth > 80:
-    #     #abort(400, f"Recursion depth error. Recursion depth: {recursiondepth}")
-    #     print(f"pre-piecemeal outputlist: {outputlist}")
-    #     return piecemeal(inputlist, databasebinary, databaseverse, outputlist, recursiondepth)
     for y in range(0, len(inputlist)):
         rand = 0
         if len(inputlist) == 0:
             return outputlist
-        # Used to be:
-        # if len(inputlist) > 4:
-        #   rand = random.randrange(1, 5)
         if len(inputlist) > 3:
             rand = random.randrange(1, 4)
         elif len(inputlist) <= 4:
@@ -73,14 +55,6 @@ def randomslicematch(inputlist, databasebinary, databaseverse, outputlist, recur
         slicetobefoundasverseword = databaseverse[randomdatabaseindex][randomindexinindex]
         outputlist.append(slicetobefoundasverseword)
         inputlist = inputlist[rand:len(inputlist)]
-
-# def piecemeal(inputlist, databasebinary, databaseverse, outputlist, recursiondepth):
-#     middle = int(len(inputlist)/2)
-#     print(f"inputlist: {inputlist}")
-#     print(f"middle: {middle}")
-#     print(f"outputlist: {outputlist}")
-#     # resetting the "recursiondepth" argument like this makes it only a pseudo-indicator of actual number of recursions (hence the number (20) far below 1000)
-#     return randomslicematch(inputlist[:middle], databasebinary, databaseverse, outputlist, 0).append(randomslicematch(inputlist[middle:], databasebinary, databaseverse, outputlist, 0))
 
 # Two functions, both added 10/4/20, from mhawke's answer and comment here:
 # https://stackoverflow.com/questions/40557335/binary-to-string-text-in-python
@@ -163,152 +137,10 @@ def emphasize():
     except Exception:
         abort(400, "invalid file")
 
-    #pythoninputbychunksbylinesbykeywords = []
-
-    ######print(f"file1: {file1}")
-    #a = file1.split('\n\n\n')
-    # a = file1
-    # b = binascii.a2b_uu(file1)
-    # b = binascii.a2b_uu('a')
-    #d = "abcd"
-    #b = ''.join([bin(ord(c))[2:].rjust(8,'0') for c in d])
-    #print(f"experiment: {b}")
-    #print(f"type: {type(b)}")
-    # reconstruction = decode_binary_string(b)
-    # print(f"abcd: {reconstruction}")
-    #b = a.split('\\\n')
-    #print(f"experiment: {a}")
-
-
-
 
     asciifileasbinary_master = encode_string_binary(file1)
 
     asciifileasbinary = splitfile(asciifileasbinary_master)
-
-    # b = decode_binary_string(a)
-    # print(f"original&&&&&&: {b}")
-
-    
-    
-
-
-
-
-                    # # Creates a list of input file containing python text, first chunk by chunk ("chunk" means a chunk of code separated
-                    # # on either end by triple newlines (i.e. two empty lines between each occurence of text))
-                    # # and then (nested in each chunk) line by line.
-
-                    # pythoninputbychunksbylinesbykeywords = [x.split('\n') for x in file1.split('\n\n\n')]
-
-                    # #pythoninputbychunksbylinesbykeywords = flatten(pythoninputbychunksbylinesbykeywords)
-                    # # print(f"python by chunks: {pythoninputbychunksbylinesbykeywords}")
-
-                    # ##pythoninputbychunksbylinesbykeywords = [[x for x in y if "{" not in x] for y in pythoninputbychunksbylinesbykeywords]
-                    # #pythoninputbychunksbylinesbykeywords = [[x for x in y if "\\" not in x] for y in pythoninputbychunksbylinesbykeywords]
-                    # #pythoninputbychunksbylinesbykeywords = [[','.join(x) for x in y] for y in pythoninputbychunksbylinesbykeywords]
-
-                    # #pythoninputbychunksbylinesbykeywords = [x.split("'',''") for x in pythoninputbychunksbylinesbykeywords]
-                    # #smallerlist = [l.split(',') for l in ','.join(biglist).split('|')]
-
-                    # # Gets rid of list elements representing double newlines (i.e. one empty line), which often occur within chunks
-                    # #pythoninputbychunksbylinesbykeywords = [[x for x in y if x != ""] for y in pythoninputbychunksbylinesbykeywords] # no need for "\n" just "" (see visualizer) ###### Isn't working; 0's for single-line breaks in output
-                    # #######print(pythoninputbychunksbylinesbykeywords)
-                    # # Creates a new list, this time for the BINARY representation of the python text original, based on the list-structure of
-                    # # the original pythonINPUTbychunksbylinesbykeywords list.
-                    # pythonbinarybychunksbylinesbykeywords = [[0 for x in y] for y in pythoninputbychunksbylinesbykeywords]
-
-                    # # print(f"python binary by chunks: {pythonbinarybychunksbylinesbykeywords}")
-                    # ######print(f"abc: {pythoninputbychunksbylinesbykeywords}")
-                    # # Python keywords
-                    # # Removed:
-                    # # 'elif ' because of "if"
-                    # # 'for ' because of "or"
-                    # # 'not ' because always compounded with another
-                    # # Changes:
-                    # # ' ' added to end of all but "print", "yield", "None", "True", and "False"
-                    # # 'else:' used instead of 'else '
-
-                    # # Keywords taken from https://wiki.python.org/moin/PyQt/Python%20syntax%20highlighting
-                    # # Will later be used for representing different sorts of python lines with different sorts of binary lists
-                    # keywords = [
-                    #     'and ', 'assert ', 'break ', 'class ', 'continue ', 'def ',
-                    #     'del ', 'else:', 'except ', 'exec ', 'finally ',
-                    #     'from ', 'global ', 'if ', 'import ', 'in ',
-                    #     'is ', 'lambda ', 'or ', 'pass ', 'print',
-                    #     'raise ', 'return ', 'try ', 'while ' , 'yield',
-                    #     'None', 'True', 'False',
-                    #     ]
-
-                    # # For-loop uses python keywords and "=" to determine how each line of pythoninput will by represented in pythonbinary.
-                    # # Iterates through list of python text input, chunk by chunk
-                    # for chunk in pythoninputbychunksbylinesbykeywords:
-
-                    #     # Makes a list of the indexes all instances in pythoninputbychunksbylinesbykeywords of the given chunk:
-                    #     chunkindices = [i for i, x in enumerate(pythoninputbychunksbylinesbykeywords) if x == chunk]
-
-                    #     # Goes to line in python chunk (e.g. "for x in y:" or "p = q")
-                    #     for line in chunk:
-
-                    #         # Makes a list of the indexes of all instances in the given chunk of the given line:
-                    #         lineindices = [i for i, x in enumerate(pythoninputbychunksbylinesbykeywords[chunkindices[0]]) if x == line]
-
-                    #         # Stores in "q2" all the "keywords" found in the given line
-                    #         # but ultimately the "q" list will only be used to checks HOW MANY instances of the keywords occur in the given line
-                    #         q2 = [re.findall(x, line) for x in keywords if re.findall(x, line) != []]
-
-                    #         # Flattens q2
-                    #         q3 = flatten(q2)
-
-                    #         # If there is one keyword, replace the corresponding element in the BINARY list (which element is currently "0") with "[1, 0]"
-                    #         # (this effectively links it to a two-syllable word, which will also be represented in binary with a two-element sublist)
-                    #         # Example: ['if y > 0:', 'import re'] in pythoninputbychunksbylinesbykeywords,
-                    #         # which was originally represented as [0, 0] in pythonbinarybychunksbylinesbykeywords,
-                    #         # now becomes [[1, 0], [1, 0]] in pythonbinarybychunksbylinesbykeywords.
-                    #         if (len(q3)) == 1:
-                    #             # Indexes into all instances of the chunk/line
-                    #             for chunkindex in chunkindices:
-                    #                 for lineindex in lineindices:
-                    #                     # Note that this is now pythonBINARYbychunksbylinesbykeywords (which, recall, has a list-structure that is identical
-                    #                     # to pythonINPUTbychunksbylinesbykeywords)
-                    #                     pythonbinarybychunksbylinesbykeywords[chunkindex][lineindex] = [1, 0]
-
-                    #         # Same sort of thing here, except for input lines like ['if x in y:'] (as both "if" and "in" are in the keywords list)
-                    #         # or ['from x import y'] ("from" and "import" being the two keywords, here)
-                    #         elif (len(q3)) == 2:
-                    #             #options = [[0, 1, 0], [1, 0, 1]]
-                    #             # added (double for-loops):
-                    #             for chunkindex in chunkindices:
-                    #                 for lineindex in lineindices:
-                    #                     pythonbinarybychunksbylinesbykeywords[chunkindex][lineindex] = [0, 1] # line was previously: 0; now it is: [0, 1, 0, 1]; now [1, 0, 1]; no [1, 0]; back to [0, 1, 0, 1]
-
-                    #         # Again (rarer; usually list-comprehensions, I think)
-                    #         elif (len(q3)) == 3:
-                    #             for chunkindex in chunkindices:
-                    #                 for lineindex in lineindices:
-                    #                     # Alternates for 3-keyword lines
-                    #                     if (lineindices.index(lineindex) % 2) == 0:
-                    #                         pythonbinarybychunksbylinesbykeywords[chunkindex][lineindex] = [1, 0, 1]
-                    #                     else:
-                    #                         pythonbinarybychunksbylinesbykeywords[chunkindex][lineindex] = [0, 1, 0]
-                    #                         # ((a rogue 1 on line 30 of "test repeat"))
-
-                    #         # Need I say more?
-                    #         elif (len(q3)) == 4:
-                    #             for chunkindex in chunkindices:
-                    #                 for lineindex in lineindices:
-                    #                     pythonbinarybychunksbylinesbykeywords[chunkindex][lineindex] = [0, 1, 0, 1]
-
-                    #         # Input lines like ['p = q']
-                    #         elif "=" in line:
-                    #             for chunkindex in chunkindices:
-                    #                 for lineindex in lineindices:
-                    #                     pythonbinarybychunksbylinesbykeywords[chunkindex][lineindex] = 1
-
-                    # print(f"pythoninputbychunksbylinesbykeywords: {pythoninputbychunksbylinesbykeywords}")
-                    # print(f"pythonbinarybychunksbylinesbykeywords: {pythonbinarybychunksbylinesbykeywords}")
-
-
 
     # New list for scanned input. List structured first by the html "</p>" tag, because this seems to be how line breaks are tagged in html...
     # I should say: the way I am testing this is with two .rtf (textEdit) files: file1 is the python test code, file2 is the html rendition of a
@@ -384,9 +216,6 @@ def emphasize():
                 wordlistasstring = ''.join(wordaslist)
                 scannedinputbylinesbywords[lineindex][wordindex] = wordlistasstring
 
-    # print(f"scannedinputbylinesbywords: {scannedinputbylinesbywords}")
-
-
     # Creates binary list that is, so to speak, isomorphic to the list of the words of the original (following the floating-tag-reformatting above)
     # (Same thing as was done for the pythonbinary___ list-creation from the pythoninput___ original, above.)
     scannedbinarybylinesbywords = [[0 for x in y] for y in scannedinputbylinesbywords]
@@ -435,10 +264,7 @@ def emphasize():
             syllables = [x for x in syllables if x != ","]
             syllables = [x for x in syllables if x != ";"]
             ######syllables = [x for x in syllables if x != "<head></head>"]
-            # print(f"Syllables2: {syllables}")
-            # head = syllables.find_all("head")
-            # print(f"head tag: {head}")
-            #syllables [x for x in syllables if x !=]
+            
             q = soup.find_all("b")
             # print(f"q: {syllables}")
             if len(syllables) > 1:
@@ -469,204 +295,26 @@ def emphasize():
 
     # print(f"scannedbinarybylinesbywords after loop: {scannedbinarybylinesbywords}")
 
-
-    ###### Speaking of atavism, I am leaving this chunk of code here, NOT accidentally, but as a monument to the rare relation existing between
-    ###### (1) the amount time I poured into it; (2) the extent to which it not only is useless but also in fact detracts from the output (insofar
-    ###### (as I should have forseen) as it limits the VARIETY of the output for any given chunk of python code); and (3) the significance of (2).
-    ###### Indeed, (2) —— i.e. the fact of its dead weight —— could be said to vindicate my entire conception of the matter.
-    ###### What did this code do? It found the verseline that was MOST SIMILAR to the given python chunk, then prioritized selection of python elements
-    ###### from that verseline.
-    # outputlistbylines = []
-    # for pythonchunk in pythonbinarybychunksbylinesbykeywords:
-    #     if pythonchunk in scannedbinarybylinesbywords:
-    #         print("Chunk is in line!")
-    #         verselineindex = scannedbinarybylinesbywords.index(pythonchunk)
-    #         pythonchunkasverseline = scannedinputbylinesbywords[verselineindex]
-    #         outputlistbylines.append(pythonchunkasverseline)
-    #     else:
-    #         pythonchunkindex = pythonbinarybychunksbylinesbykeywords.index(pythonchunk)
-    #         print(f"pythonchunkindex:", pythonchunkindex)
-    #         chunkelementsindicesofincidence = []
-    #         print(f"for pythonchunk {pythonchunk}")
-    #         for pythonline in pythonchunk:
-    #             indicesofincidence = []
-    #             chunkelementsindicesofincidence.append(indicesofincidence)
-    #             for verseline in scannedbinarybylinesbywords:
-    #                 if pythonline in verseline:
-    #                     listofduplicates = list_duplicates_of(verseline, pythonline)
-    #                     if len(listofduplicates) == 1:
-    #                         indicesofincidence.append(verseline.index(pythonline))
-    #                     else:
-    #                         indicesofincidence.append(listofduplicates)
-    #                 else:
-    #                     indicesofincidence.append(0)
-    #         checksperelement = len(scannedbinarybylinesbywords)
-    #         rating = 0
-    #         scannedbinarylinesrated = {}
-    #         for verseline in scannedbinarybylinesbywords:
-    #             verselineasstring = str(verseline)
-    #             scannedbinarylinesrated[verselineasstring] = 0 ###### A problem: https://stackoverflow.com/questions/10664856/make-dictionary-with-duplicate-keys-in-python
-    #         for i in range(len(chunkelementsindicesofincidence) - 1, 0, -1): # start from end, iterate down
-    #             for j in range(checksperelement - 1, -1, -1): ###### why not end at 0?
-    #                 elementjthlist = chunkelementsindicesofincidence[i][j]
-    #                 prevelementjthlist = chunkelementsindicesofincidence[i-1][j]
-    #                 if type(elementjthlist) is list and type(prevelementjthlist) is list:
-    #                     for subincidence in elementjthlist:
-    #                         for prevsubincidence in prevelementjthlist:
-    #                             if subincidence - prevsubincidence == 1:
-    #                                 chunkelementsindicesofincidence[i][j] = subincidence
-    #                                 chunkelementsindicesofincidence[i-1][j] = prevsubincidence
-    #                                 break
-    #                     else:
-    #                         chunkelementsindicesofincidence[i][j] = subincidence
-    #                         chunkelementsindicesofincidence[i-1][j] = prevsubincidence
-    #                 elif type(elementjthlist) is list:
-    #                     for subincidence in elementjthlist:
-    #                         if subincidence - prevelementjthlist == 1:
-    #                             chunkelementsindicesofincidence[i][j] = subincidence
-    #                             break
-    #                     else:
-    #                         chunkelementsindicesofincidence[i][j] = subincidence
-    #                 elif type(prevelementjthlist) is list:
-    #                     for prevsubincidence in prevelementjthlist:
-    #                         if elementjthlist - prevsubincidence == 1:
-    #                             chunkelementsindicesofincidence[i-1][j] = prevsubincidence
-    #                             break
-    #                     else:
-    #                         chunkelementsindicesofincidence[i-1][j] = prevsubincidence
-    #                 if (chunkelementsindicesofincidence[i][j] - chunkelementsindicesofincidence[i-1][j]) == 1:
-    #                     verselineas = str(scannedbinarybylinesbywords[j])
-    #                     scannedbinarylinesrated[verselineas] += 1
-    #         # print(f"chunkelementsindicesofincidence {chunkelementsindicesofincidence}")
-    #         # verseline_binary_as_key_string_to_be_searched = max(scannedbinarylinesrated.items(), key=operator.itemgetter(1))[0] ######
-    #         # print(f"max values {max(scannedbinarylinesrated.items(), key=operator.itemgetter(1))}")
-    #         # verseline_binary_as_list_to_be_searched = ast.literal_eval(verseline_binary_as_key_string_to_be_searched)
-
-    #         # verselineindex = scannedbinarybylinesbywords.index(verseline_binary_as_list_to_be_searched)
-
-    #         #for pythonline in pythonbinarybychunksbylinesbykeywords[pythonchunkindex]:
-    #         sorted_scannedbinarylinesrated = sorted(scannedbinarylinesrated.items(), key=operator.itemgetter(1))
-    #         #scannedbinarylinesrated_as_sorted_dict = dict(sorted_scannedbinarylinesrated)
-    #         #print(f"scannedbinarylinesrated as sorted dict: {scannedbinarylinesrated_as_sorted_dict}")
-    #         #print(f"max values {max(scannedbinarylinesrated.items(), key=operator.itemgetter(1))}")
-    #         print(f"scannedbinarylinesrated as sorted tuples: {sorted_scannedbinarylinesrated}")
-
-    #         #for i in range(len(max(scannedbinarylinesrated.items(), key=operator.itemgetter(1)))):
-
-    #         verselineindex = 0
-
-    #         for i in range((len(sorted_scannedbinarylinesrated) - 1), -1, -1):
-    #             print(f"i: {i}")
-    #             #verseline_binary_as_key_string_to_be_searched = max(scannedbinarylinesrated.items(), key=operator.itemgetter(1))[i]
-    #             #verseline_binary_as_key_string_to_be_searched = scannedbinarylinesrated_as_sorted_dict[i]
-    #             verseline_binary_as_key_string_to_be_searched = sorted_scannedbinarylinesrated[i][0]
-    #             print(f"verseline_binary_as_key_string_to_be_searched (last to first): {verseline_binary_as_key_string_to_be_searched}")
-    #             verseline_binary_as_list_to_be_searched = ast.literal_eval(verseline_binary_as_key_string_to_be_searched)
-    #             verselineindex = scannedbinarybylinesbywords.index(verseline_binary_as_list_to_be_searched)
-    #             #print(f"")
-    #             # The pythonlines get repeated if there is a break following successful appendings; that is, the "pythonline in pythonchunk"
-    #             # loop restarts after a break, even if the first few pythonlines WERE in scannedbinarybylinesbywords[verselineindex].
-    #             # We want to check every pythonline FIRST, but we also want the second loop (for appending), to occur only
-    #             if i == -1:
-    #                 print("NO MATCHES")
-    #             for pythonline in pythonchunk:
-    #                 print(f"pythonline: {pythonline}")
-    #                 if pythonline not in scannedbinarybylinesbywords[verselineindex]:
-    #                     print("Breaking!")
-    #                     break
-    #             else:
-    #                 break
-
-    #         print("This verseline got through (you should NOT see Breaking! just before this)")
-    #         for pythonline in pythonchunk:
-    #             randomindexinverseline = random.randrange(0, len(scannedbinarybylinesbywords[verselineindex]))
-    #             while pythonline != scannedbinarybylinesbywords[verselineindex][randomindexinverseline]:
-    #                 randomindexinverseline = random.randrange(0, len(scannedbinarybylinesbywords[verselineindex]))
-    #             pythonlineasverseword = scannedinputbylinesbywords[verselineindex][randomindexinverseline]
-    #             outputlistbylines.append(pythonlineasverseword)
-    ######
-
-    # Instead we look for matches by, as it were, random choice. The timeout clause in the while loop
-    # executes in cases in which there is a pythonlinebinary element that cannot find a corresponding verselinebinary element,
-    # as would often be the case if you had a pythonline with four or more keywords in it, as that would be represented as [0, 1, 0, 1].
-    # So, unless the scannedinput has a four-syllable word, it would be unlikely that that pythonline would find a match.
-    # ((Perhaps I will get rid of the if len(q3) > 4: --> [0, 1, 0, 1] assignment, if I find this is too common.))
-    
-    
-    
-    #asciifileasbinary
-
     asciifileasbinarylist = []
 
     for x in asciifileasbinary:
         asciifileasbinarylist.append([int(i) for i in x])
 
     print(f"asciiasbinarylist: {asciifileasbinarylist}")
-    # asciifileasbinarylist = list(asciifileasbinary)
-    # asciifileasbinarylist = [int(i) for i in asciifileasbinarylist]
-    # print(f"asciifileasbinarylist: {asciifileasbinarylist}")
-    # print(f"asciifileasbinarylist: {asciifileasbinarylist}")
-    # print(f"asciifileasbinarylist: {scannedinputbylinesbywords}")
+
     outputlist = []
     recursiondepth = 0
     for i in asciifileasbinarylist:
-        # print(f"i: {i}")
         q = randomslicematch(i, scannedbinarybylinesbywords, scannedinputbylinesbywords, outputlist, recursiondepth)
-        # print(f"q: {q}")
-        # outputlist.append(q)
-        # print(f"outputlist: {outputlist}")
-    # outputlist = randomslicematch(asciifileasbinarylist, scannedbinarybylinesbywords, scannedinputbylinesbywords, outputlist, recursiondepth)
-    # print(f"recursion depth: {recursiondepth}")
-    # print(f"outputlist: {outputlist}")
-
-                    # for pythonchunk in pythonbinarybychunksbylinesbykeywords:
-                    #     for pythonline in pythonchunk:
-                    #         randomverselineindex = random.randrange(0, len(scannedbinarybylinesbywords))
-                    #         randomindexinverseline = random.randrange(0, len(scannedbinarybylinesbywords[randomverselineindex]))
-                    #         timeout = time.time() + 6
-                    #         while pythonline != scannedbinarybylinesbywords[randomverselineindex][randomindexinverseline]:
-                    #             randomverselineindex = random.randrange(0, len(scannedbinarybylinesbywords))
-                    #             randomindexinverseline = random.randrange(0, len(scannedbinarybylinesbywords[randomverselineindex]))
-                    #             if time.time() > timeout:
-                    #                 abort(400, f"no word found for pythonline {pythonline}")
-                    #         pythonlineasverseword = scannedinputbylinesbywords[randomverselineindex][randomindexinverseline]
-                    #         outputlistbylines.append(pythonlineasverseword)
-
-
-    # for i in outputlist:
-    #     i = [[str(x) if not isinstance(x, str) else x for x in y] if isinstance(y, list) else y for y in i]
 
     outputlist = [[str(x) if not isinstance(x, str) else x for x in y] if isinstance(y, list) else y for y in outputlist]
     # Outputlist contained certain TAGGED but not stringified words (inevitable grease from the hands of BeautifulSoup);
     # Here, look for lists, then check for non-strings in that list element and render them as strings.
-# outputlist = [[str(x) if not isinstance(x, str) else x for x in y] if isinstance(y, list) else y for y in outputlist]
-
-    # for i in outputlist:
-    #     i = ["".join(word) if isinstance(word, list) else word for word in i]
 
     outputlist = ["".join(word) if isinstance(word, list) else word for word in outputlist]
-
-    # print(f"outputlist2: {outputlist}")
-    
-
-    # Now we join the outputlist multi-syllabic words, else word for word... Wait, isn't this effectively flattening the outputlist? So then
-    # could I have just done this "joining" business instead of making my absurd flatten function??
-    # outputlist = ["".join(word) if isinstance(word, list) else word for word in outputlist]
-
-    # outputlist = flatten(outputlist)
     # print(f"outputlist: {outputlist}")
-    # print(f"Outputlist: {outputlist}")
-  ######  splitfilechunksjoined = []
-  ######  for i in outputlist:
-        # splitfilechunksjoined = " ".join(i)
-    
- ######   # outputasplaintext = " ".join(splitfilechunksjoined)
-
-    # flatten()
     outputlist = flatten(outputlist)
     outputasplaintext = " ".join(outputlist)
-    # Join astride spaces. (This gives output some extra whitespace in places.)
-# outputasplaintext = " ".join(outputlist)
 
     return render_template("emphasize.html", file1=file1, file2=outputasplaintext)
 
