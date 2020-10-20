@@ -27,7 +27,7 @@ binarytree = [1, 0, 0, [1, 0], [1, 0, 0]]
 
 Then random sections of the ascii binary representation of the input text file* will search (also randomly) for matching sections of binarytree, and from those sections it will move to scannedwordstree and for the output.
 
-The simplest way to get it running is to cd into the directory, (1) get the virtual environment going (in terminal: python3 -m venv venv followed by . venv/bin/activate); and (2) start flask (in terminal: export FLASK_APP=application.py followed by flask run).
+The simplest way to get it running is to cd into the directory, (1) get the virtual environment going (in terminal: `python3 -m venv venv` followed by `. venv/bin/activate`); and (2) start flask (in terminal: `export FLASK_APP=application.py` followed by `flask run`).
 
 Then you can navigate to the local host and upload the file (included in the final_project_1_venv directory (the zip attached here)) titled "python_text.txt" into the python text upload spot — then upload "alls_well_test.txt" (also in the attached directory) into the scanned verse upload spot.
 
