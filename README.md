@@ -1,9 +1,7 @@
 # final_project_1_venv
-CS50 final project from December 2017.
+CS50 final project from December 2017, updated a bit in October 2020.
 
-Updated a bit in October 2020.
-
-It essentially converts ascii text to binary, then encodes that binary into English according to the marking system of formal poetic <a href=https://en.wikipedia.org/wiki/Scansion>scansion</a>. 
+Converts ascii text to binary, then encodes that binary into English according to the marking system of formal poetic <a href=https://en.wikipedia.org/wiki/Scansion>scansion</a>. 
 
 It's built to handle an html rendition of <a href=http://www.shakespearescanned.com/> this </a> database of Shakespeare, scanned by a dude named Richard Leed. 
 
