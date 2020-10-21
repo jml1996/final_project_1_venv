@@ -1,11 +1,13 @@
-# final_project_1_venv
+# final_project_1_venv]
 CS50 final project from December 2017, updated a bit in October 2020.
 
 Converts ascii text to binary, then encodes that binary into English according to the marking system of formal poetic <a href=https://en.wikipedia.org/wiki/Scansion>scansion</a>. 
 
 It's built to handle an html rendition of <a href=http://www.shakespearescanned.com/> this </a> database of Shakespeare, scanned by a dude named Richard Leed. 
 
-Leed bolds accented syllables, and, if the user converts this rtf text to html (such that bolded syllables are labelled with <b</b> tags, as outputted by <a href=https://www.textfixer.com/html/convert-word-to-html.php>this</a> word to html converter (see the index.html page for further instructions on this) — if the user converts this rtf text to html, it can then be converted to a tree consisting of binary representations of the words, with accented (bolded) syllables being represented by 1s, unaccented syllables being represented by 0s.
+Leed bolds accented syllables, and, if the user converts this rtf text to html (such that bolded syllables are labelled with <b></b> tags, as outputted by <a href=https://www.textfixer.com/html/convert-word-to-html.php>this</a> word to html converter (see the index.html page for further instructions on this)
+
+— if the user converts this rtf text to html, it can then be converted to a tree consisting of binary representations of the words, with accented (bolded) syllables being represented by 1s, unaccented syllables being represented by 0s.
 
 Multi-syllabic words are represented by lists, nested one layer deeper than single-syllable words.
 
