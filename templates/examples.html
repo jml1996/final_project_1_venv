@@ -1,6 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <title>Emphasis</title>
+
+    </head>
+<body>
+
+
 <div class="row-continer">
+
     
-    <div id="examples" class="col">
+    <div id="examples" class="container">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="examples.html">Examples</a>
+         </nav>
         <p>
             <h3>To use this example text, paste it into a .txt file and upload as the Reverse file.</h3>
         </p>
@@ -63,63 +88,21 @@
 
 &ltp&gtFor &ltb&gtwith &lt/b&gtthe &ltb&gtdark&lt/b&gt, poor &ltb&gtthief&lt/b&gt, I’ll &ltb&gtsteal &lt/b&gta&ltb&gtway&lt/b&gt.&lt/p&gt
         </p>
-    </div>
-
-    <div class="col">
         <p>
             <h3>To use this example text, paste it into a .txt file and upload it as the Front file.</h3>
         </p>
         <p>
-    import re
-from flask import Flask, abort, redirect, render_template, request
-from html import escape
-from werkzeug.exceptions import default_exceptions, HTTPException
-
-from helpers import lines, sentences, substrings
-
-
-@app.route("/")
-def index():
-    """Handle requests for / via GET (and POST)"""
-    return render_template("index.html")
-
-
-@app.route("/compare", methods=["POST"])
-def compare():
-    """Handle requests for /compare via POST"""
-
-    # Read files
-    if not request.files["file1"] or not request.files["file2"]:
-        abort(400, "missing file")
-    try:
-        file1 = request.files["file1"].read().decode("utf-8")
-        file2 = request.files["file2"].read().decode("utf-8")
-    except Exception:
-        abort(400, "invalid file")
-
-    # Compare files
-    if not request.form.get("algorithm"):
-        abort(400, "missing algorithm")
-    elif request.form.get("algorithm") == "lines":
-        regexes = [f"^{re.escape(match)}$" for match in lines(file1, file2)]
-    elif request.form.get("algorithm") == "sentences":
-        regexes = [re.escape(match) for match in sentences(file1, file2)]
-    elif request.form.get("algorithm") == "substrings":
-        if not request.form.get("length"):
-            abort(400, "missing length")
-        elif not int(request.form.get("length")) > 0:
-            abort(400, "invalid length")
-        regexes = [re.escape(match) for match in substrings(
-            file1, file2, int(request.form.get("length")))]
-    else:
-        abort(400, "invalid algorithm")
-
-    # Highlight files
-    highlights1 = highlight(file1, regexes)
-    highlights2 = highlight(file2, regexes)
-
-    # Output comparison
-    return render_template("compare.html", file1=highlights1, file2=highlights2)
+            >> program = "(begin (define r 10) (* pi (* r r)))"
+            <br>
+            >>> parse(program)
+            <br>
+            ['begin', ['define', 'r', 10], ['*', 'pi', ['*', 'r', 'r']]]
+            <br>
+            >>> eval(parse(program))
+            <br>
+            314.1592653589793
         </p>
     </div>
 </div>
+</body>
+</html>
