@@ -7,8 +7,7 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+small, strike, strong, sub, sup, tt, var, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -69,6 +68,7 @@ p {
 }
 
 nav {
+    margin-top: .7rem;
     display: flex;
     justify-content: space-evenly;
     text-decoration: none;
@@ -76,3 +76,68 @@ nav {
 nav a {
     text-decoration: none;
 }
+
+#upload {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+    /* border: dotted; */
+    /* display: flex; */
+}
+
+
+/* .container2 {
+    width: 80%;
+    display: flex;
+    /* flex-direction: c; */
+    /* height: 100%; */
+/* } */
+
+
+
+/* ensure content is below navbar
+div.container-fluid
+{
+    padding-top: 56px;
+} */
+
+/* fill viewport
+div.container-fluid, div.row, div.col
+{
+    height: 100%;
+} */
+
+/* remove padding within column */
+/* div.col
+{
+    padding-left: 0;
+    padding-right: 0;
+} */
+
+/* add padding around form */
+/* form
+{
+    padding: 15px;
+} */
+
+/* wrap and scroll preformatted text */
+pre
+{
+    height: 100%;
+    overflow: auto;
+    padding: 15px;
+    white-space: pre-wrap;
+}
+
+/* highlight spans */
+/* span
+{
+    background-color: #ff0;
+} */

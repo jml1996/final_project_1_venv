@@ -124,6 +124,15 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/examples")
+def examples():
+    return render_template("examples.html")
+
+# @app.route("/index")
+# def index2():
+#     return render_template("index.html")
+
+
 @app.route("/emphasize", methods=["POST"])
 def emphasize():
     """Handle requests for /emphasize via POST"""
