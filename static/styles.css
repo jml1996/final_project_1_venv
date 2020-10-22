@@ -1,46 +1,70 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+* {
+    box-sizing: border-box;
+    max-width: 100%; /* never bigger than parent; no horizontal scrollbar*/
+    /* border: 1px solid grey; */
+}
+
 /* fill viewport, hide scroll bar */
-html, body
-{
-    height: 100%;
-    /* overflow: hidden; */
+html {
+    font-size: 62.5%;
 }
 
-/* ensure content is below navbar */
-div.container-fluid
-{
-    padding-top: 56px;
+body {
+    line-height: 1.5;
+    font-size: 1.4rem;
+    color: #4f4f4f;
 }
 
-/* fill viewport */
-div.container-fluid, div.row, div.col, div.jumbotron
-{
-    height: 100%;
+h1 {
+    font-size: 4rem;
+    text-align: left;
 }
 
-/* remove padding within column */
-div.col
-{
-    padding-left: 0;
-    padding-right: 0;
+h2 {
+    font-size: 2rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+    text-align: center;
+}
+h3 {
+    font-size: 2rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+    text-align: center;
 }
 
-/* add padding around form */
-form
-{
-    padding: 15px;
+.container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* wrap and scroll preformatted text */
-pre
-{
-    height: 100%;
-    overflow: auto;
-    padding: 15px;
-    white-space: pre-wrap;
+p {
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
 }
 
-/* highlight spans */
-span
-{
-    background-color: #ff0;
-}

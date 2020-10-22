@@ -1,140 +1,63 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
 
-{% block body %}
+<html lang="en">
+    <head>
 
-    <div class="col">
-        <form action="/emphasize" enctype="multipart/form-data" method="post">
-            first file (python text)*<br>
-            <input name="file1", type="file"><br><br>
-            second file (verse)**<br>
-            <input name="file2", type="file"><br><br>
-            <button type="submit">emphasize</button></button><br><br>
-            *Just copy and paste a (well-formatted) python program into a text file and upload.<br>
-            **A text file containing clean HTML, as outputted by <a href=https://www.textfixer.com/html/convert-word-to-html.php>this</a> word-to-html converter.<br>
-            Stressed syllables must be indicated with "&ltb&gt&lt/b&gt" tags, not "&ltstrong&gt&lt/strong&gt."
-        </form>
-    </div>
-    <div class="col" style="overflow:scroll; height:200px;">
-        <p>
-            <b>e.g. put this into a .rtf or .txt file, for the verse portion:</b>
-        </p>
-        <p>
-        &ltp&gtNoth&ltb&gting &lt/b&gtin &ltb&gtFrance&lt/b&gt un&ltb&gttil &lt/b&gthe &ltb&gthas &lt/b&gtno &ltb&gtwife&lt/b&gt!&lt/p&gt
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-&ltp&gtThou &ltb&gtshalt &lt/b&gthave &ltb&gtnone&lt/b&gt, Rous&ltb&gtsill&lt/b&gton, &ltb&gtnone &lt/b&gtin &ltb&gtFrance&lt/b&gt; &lt/p&gt
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
 
-&ltp&gtThen &ltb&gthast &lt/b&gtthou &ltb&gtall &lt/b&gta&ltb&gtgain&lt/b&gt. Poor &ltb&gtlord&lt/b&gt, is’t &ltb&gtI&lt/b&gt&lt/p&gt
+        <link href="/static/styles.css" rel="stylesheet"/>
 
-&ltp&gtThat &ltb&gtchase &lt/b&gtthee &ltb&gtfrom &lt/b&gtthy &ltb&gtcoun&lt/b&gttry &ltb&gtand &lt/b&gtex&ltb&gtpose &lt/b&gt&lt/p&gt
+        <title>Emphasis</title>
 
-&ltp&gtThese &ltb&gttend&lt/b&gter &ltb&gtlimbs &lt/b&gtof &ltb&gtthine &lt/b&gtto &ltb&gtthe &lt/b&gte&ltb&gtvent&lt/b&gt&lt/p&gt
+    </head>
+    <body>
+        <div id="indexouter" class="container">
+            <h1>Folio</h1>
+        <div id="essay" class="middle">
+            
+            <h2>What is it supposed to be?</h2>
+            <p>This program is designed to represent text by means of an expansion. The expansion, too, is conveyed with English words; however, the original text is encoded, not explicitly (e.g., in the letters of the expansion), but implicitly, in the natural emphases of those English words which are concatenated in the output.</p>
 
-&ltp&gtOf &ltb&gtthe &lt/b&gtnone-&ltb&gtspar&lt/b&gting &ltb&gtwar&lt/b&gt? And &ltb&gtis &lt/b&gtit &ltb&gtI&lt/b&gt&lt/p&gt
+<h2>How is it supposed to be used?</h2>
 
-&ltp&gtThat &ltb&gtdrive &lt/b&gtthee &ltb&gtfrom &lt/b&gtthe &ltb&gtsport&lt/b&gtive &ltb&gtcourt&lt/b&gt, where &ltb&gtthou&lt/b&gt&lt/p&gt
+<p>To use the program, input two plain text files (i.e., two files with a .txt extension) {1}. The first file, referred to hereafter as the Front, contains the text that is to be represented in terms of the second, referred to as the Reverse. The Front may be any text, formatted in any manner. As of this edition (October 2020), the Reverse has stricter formatting requirements: ideally, the Reverse would contain only multisyllabic, English words, in which the syllable or syllables emphasized in any given word have been enclosed in a pair of &lt;b&gt;&lt;/b&gt; tags.</p>
 
-&ltp&gtWast &ltb&gtshot &lt/b&gtat &ltb&gtwith &lt/b&gtfair &ltb&gteyes&lt/b&gt, to &ltb&gtbe &lt/b&gtthe &ltb&gtmark &lt/b&gt&lt/p&gt
+<p>However, the program was designed with the work of <a href=http://www.shakespearescanned.com/shakespeare.html>Richard Leed</a> in mind, as input for the Reverse. Leed’s website contains works of Shakespeare that have been formally scanned {2}, such that emphasized syllables are written in bold text. To develop and test the program, I opened some of Leed’s PDFs on Microsoft Word and copied small sections of that richly formatted text (i.e., text in which the bolded syllables still appeared as <b>bold</b>) into <a href=https://www.textfixer.com/html/convert-word-to-html.php>this</a> Word to HTML converter. In this way, I did not have personally to scan large quantities of verse by adding &lt;b&gt;&lt;/b&gt; tags to bolded syllables. This method of using Leed’s PDFs as a sort of database for the Reverse has some drawbacks — indeed, the whole method of using formal poetic scansion as the intermediary between binary and English natural language is flawed. The first and most obvious is that the intonation of a word, and so the manner in which it is properly to be scanned (as of this edition: the placement of the &lt;b&gt;&lt;/b&gt; tags), is largely dependent upon the context from which it is derived (in the case of Leed’s PDFs: a verse line, in a scene, in a play by Shakespeare) and the actor by whom it is intoned. In other words, (a) word x might be, on the one hand, unaccented when flanked by words y and z and then, on the other, accented when flanked by words p and q, and (b) the emphasis is properly the actor’s, not the text’s. Both of these sources of metrical ambiguity are amplified by the presence of monosyllabic words — hence the statement above, that “ideally, the Reverse would contain only multisyllabic, English words.” A descriptive account of spoken English or of carefully scanned English verse would, I suspect, note that the geographical and historical variation in the accentuation of a given multisyllabic word is less than the geographical and historical variation in the accentuation of a given sentence. In other words, I suspect there would be more absolute variety in the accentuation of “And comes that other fall we name the fall” than there would be in the accentuation of “Other” or “Everyone.” {3} In concrete terms, the sentence “And comes that other fall we name the fall” might be represented in binary either as [0, 1, 0 [1, 0] 0, 0, 1, 0, 1] (indicating accents falling on the syllables “comes,” “oth”, “name”, and the second “fall,” for a reading like this: “and COMES that OTHer fall we NAME the FALL”) or as [0, 1, 0 [1, 0] 1, 0, 1, 0, 1] (indicating accents falling on the syllables “comes,” “oth”, “fall,” “name”, and “fall” again, for a reading like this: “and COMES that OTHer FALL we NAME the FALL”). {4} However, “other” is consistently OTHer, not oTHER, and “everyone” is consistently EV’ryone (here described as a three-, not four-, syllable word, because the second “e” in “everyone” rarely makes itself heard as a syllable) not ev’RYone or ev’ryONE {5}. So we would reliably have [1, 0] as our binary representation of “other” and [1, 0, 0] as our binary representation of “everyone.”</p>
 
-&ltp&gtOf &ltb&gtsmo&lt/b&gtky &ltb&gtmusk&lt/b&gtets? &ltb&gtO &lt/b&gtyou &ltb&gtlead&lt/b&gten &ltb&gtmess&lt/b&gtengers &lt/p&gt
+<p>In this manner, the program generates a binary representation of both the Front and the Reverse, after which it iterates through the binary representation of the Front, slicing up to four elements at a time from the Front’s ASCII-derived list of bits and searching randomly in the Reverse’s tree {6} for a matching slice, i.e., a slice whose sequence of bits is identical to the slice taken from the Front’s binary list. When a match has been found, those words in the Reverse which correspond to the match are appended to the output.</p>
 
-&ltp&gtThat &ltb&gtride &lt/b&gtu&ltb&gtpon &lt/b&gtthe &ltb&gtvi&lt/b&gt(o)lent &ltb&gtspeed &lt/b&gtof &ltb&gtfire&lt/b&gt,&lt/p&gt
-
-&ltp&gtFly &ltb&gtwith &lt/b&gtfalse &ltb&gtaim&lt/b&gt, cleave &ltb&gtthe &lt/b&gtstill-&ltb&gtpierc&lt/b&gting &ltb&gtair &lt/b&gt&lt/p&gt
-
-&ltp&gtThat &ltb&gtsings &lt/b&gtwith &ltb&gtpierc&lt/b&gting, &ltb&gtdo &lt/b&gtnot &ltb&gttouch &lt/b&gtmy &ltb&gtlord&lt/b&gt. &lt/p&gt
-
-&ltp&gtWho&ltb&gtev&lt/b&gter &ltb&gtshoots &lt/b&gtat &ltb&gthim&lt/b&gt, I &ltb&gtset &lt/b&gthim &ltb&gtthere&lt/b&gt.&lt/p&gt
-
-&ltp&gtWho&ltb&gtev&lt/b&gter &ltb&gtcharg&lt/b&gtes &ltb&gton &lt/b&gthis &ltb&gtfor&lt/b&gtward &ltb&gtbreast&lt/b&gt, &lt/p&gt
-
-&ltp&gtI &ltb&gtam &lt/b&gtthe &ltb&gtcait&lt/b&gtiff &ltb&gtthat &lt/b&gtdo &ltb&gthold &lt/b&gthim &ltb&gtto’t&lt/b&gt,&lt/p&gt
-
-&ltp&gtAnd &ltb&gtthough &lt/b&gtI &ltb&gtkill &lt/b&gthim &ltb&gtnot&lt/b&gt, I &ltb&gtam &lt/b&gtthe &ltb&gtcause&lt/b&gt&lt/p&gt
-
-&ltp&gtHis &ltb&gtdeath &lt/b&gtwas &ltb&gtso &lt/b&gtef&ltb&gtfec&lt/b&gtted. &ltb&gtBett&lt/b&gter ’&ltb&gttwere &lt/b&gt&lt/p&gt
-
-&ltp&gtI &ltb&gtmet &lt/b&gtthe &ltb&gtra&lt/b&gtvin &ltb&gtli&lt/b&gton &ltb&gtwhen &lt/b&gthe &ltb&gtroared&lt/b&gt&lt/p&gt
-
-&ltp&gtWith &ltb&gtsharp &lt/b&gtcon&ltb&gtstraint &lt/b&gtof &ltb&gthung&lt/b&gter; &ltb&gtbett&lt/b&gter ’&ltb&gttwere &lt/b&gt&lt/p&gt &ltp&gtThat &ltb&gtall &lt/b&gtthe &ltb&gtmis&lt/b&gte&ltb&gtries &lt/b&gtwhich &ltb&gtna&lt/b&gtture &ltb&gtowes&lt/b&gt&lt/p&gt
-
-&ltp&gtWere &ltb&gtmine &lt/b&gtat &ltb&gtonce&lt/b&gt. No, &ltb&gtcome &lt/b&gtthou &ltb&gthome&lt/b&gt, Rous&ltb&gtsill&lt/b&gton, &lt/p&gt
-
-&ltp&gtWhence &ltb&gthon&lt/b&gtor &ltb&gtbut &lt/b&gtof &ltb&gtdang&lt/b&gter &ltb&gtwins &lt/b&gta &ltb&gtscar&lt/b&gt,&lt/p&gt
-
-&ltp&gtAs &ltb&gtoft &lt/b&gtit &ltb&gtlos&lt/b&gtes &ltb&gtall&lt/b&gt. I &ltb&gtwill &lt/b&gtbe &ltb&gtgone&lt/b&gt.&lt/p&gt
-
-&ltp&gtMy &ltb&gtbe&lt/b&gting &ltb&gthere &lt/b&gtit &ltb&gtis &lt/b&gtthat &ltb&gtholds &lt/b&gtthee &ltb&gthence&lt/b&gt. &lt/p&gt
-
-&ltp&gtShall &ltb&gtI &lt/b&gtstay &ltb&gthere &lt/b&gtto &ltb&gtdo’t&lt/b&gt? No, &ltb&gtno&lt/b&gt, al&ltb&gtthough &lt/b&gt&lt/p&gt
-
-&ltp&gtThe &ltb&gtair &lt/b&gtof &ltb&gtpar&lt/b&gta&ltb&gtdise &lt/b&gtdid &ltb&gtfan &lt/b&gtthe &ltb&gthouse&lt/b&gt, &lt/p&gt
-
-&ltp&gtAnd &ltb&gtang&lt/b&gtels &ltb&gtoff&lt/b&gticed &ltb&gtall&lt/b&gt. I &ltb&gtwill &lt/b&gtbe &ltb&gtgone&lt/b&gt,&lt/p&gt
-
-&ltp&gtThat &ltb&gtpit&lt/b&gt(i)ful &ltb&gtru&lt/b&gtmor &ltb&gtmay &lt/b&gtre&ltb&gtport &lt/b&gtmy &ltb&gtflight&lt/b&gt&lt/p&gt
-
-&ltp&gtTo &ltb&gtcon&lt/b&gtso&ltb&gtlate &lt/b&gtthine &ltb&gtear&lt/b&gt. Come &ltb&gtnight&lt/b&gt, end &ltb&gtday&lt/b&gt; &lt/p&gt
-
-&ltp&gtFor &ltb&gtwith &lt/b&gtthe &ltb&gtdark&lt/b&gt, poor &ltb&gtthief&lt/b&gt, I’ll &ltb&gtsteal &lt/b&gta&ltb&gtway&lt/b&gt.&lt/p&gt
-        </p>
-    </div>
-
-    <div class="col" style="overflow:scroll; height:200px;">
-        <p>
-            <b>e.g. or this, for the python portion:</b>
-        </p>
-        <p>
-    import re
-from flask import Flask, abort, redirect, render_template, request
-from html import escape
-from werkzeug.exceptions import default_exceptions, HTTPException
-
-from helpers import lines, sentences, substrings
-
-
-@app.route("/")
-def index():
-    """Handle requests for / via GET (and POST)"""
-    return render_template("index.html")
-
-
-@app.route("/compare", methods=["POST"])
-def compare():
-    """Handle requests for /compare via POST"""
-
-    # Read files
-    if not request.files["file1"] or not request.files["file2"]:
-        abort(400, "missing file")
-    try:
-        file1 = request.files["file1"].read().decode("utf-8")
-        file2 = request.files["file2"].read().decode("utf-8")
-    except Exception:
-        abort(400, "invalid file")
-
-    # Compare files
-    if not request.form.get("algorithm"):
-        abort(400, "missing algorithm")
-    elif request.form.get("algorithm") == "lines":
-        regexes = [f"^{re.escape(match)}$" for match in lines(file1, file2)]
-    elif request.form.get("algorithm") == "sentences":
-        regexes = [re.escape(match) for match in sentences(file1, file2)]
-    elif request.form.get("algorithm") == "substrings":
-        if not request.form.get("length"):
-            abort(400, "missing length")
-        elif not int(request.form.get("length")) > 0:
-            abort(400, "invalid length")
-        regexes = [re.escape(match) for match in substrings(
-            file1, file2, int(request.form.get("length")))]
-    else:
-        abort(400, "invalid algorithm")
-
-    # Highlight files
-    highlights1 = highlight(file1, regexes)
-    highlights2 = highlight(file2, regexes)
-
-    # Output comparison
-    return render_template("compare.html", file1=highlights1, file2=highlights2)
-        </p>
-    </div>
-
-{% endblock %}
+<p>Because the program was conceived as a cipher intuitive to humans but not readily intelligible to machines, the output ought properly to be stripped of the &lt;b&gt;&lt;/b&gt; tags with which the program constructs the Reverse’s binary tree. However, I have left the &lt;b&gt;&lt;/b&gt tags to render the overarching concept behind the program more readily intelligible to humans.</p>
+<div id="upload" class="col">
+    <form action="/emphasize" enctype="multipart/form-data" method="post">
+        first file (python text)*<br>
+        <input name="file1", type="file"><br><br>
+        second file (verse)**<br>
+        <input name="file2", type="file"><br><br>
+        <button type="submit">emphasize</button></button><br><br>
+        *Just copy and paste a (well-formatted) python program into a text file and upload.<br>
+        **A text file containing clean HTML, as outputted by <a href=https://www.textfixer.com/html/convert-word-to-html.php>this</a> word-to-html converter.<br>
+        Stressed syllables must be indicated with "&ltb&gt&lt/b&gt" tags, not "&ltstrong&gt&lt/strong&gt."
+    </form>
+</div>
+<p id="footnotes">
+{1} On a macOS, open the preferences of TextEdit and select “Plain text” as the default format, before creating the new TextEdit file.
+<br>
+{2} At the metrical discretion of Leed himself, as far as I can tell.
+<br>
+{3} Here, the program’s use of the prosodic concept of scansion diverges from that of prosody itself: multisyllabic words are represented as structurally homeomorphic to sentences. That is, the program represents both sentences and multisyllabic words as lists.
+<br>
+{4} The divergence here has been described as the divergence between musical and unmusical poetry: “When in poetry we have a predominating stress accent and a variable number of syllables between two stresses (usually four stresses to a line, corresponding to ‘common time’ in music), we have musical poetry, that is, poetry which resembles in its structure the music contemporary with it” (Northrop Frye, <i>The Anatomy of Criticism</i>, Fourth Essay: Rhetorical Criticism: Theory of Genres).
+<br>
+{5} Though one might imagine an extraordinary or philosophical context in which the word would properly be described as ev’ryONE.
+<br>
+{6} A tree is a list in which some elements are themselves lists, as in the case of multisyllabic words.
+            </p>
+        </div>
+</div>
+</body>
+</html>
